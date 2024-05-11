@@ -1,4 +1,7 @@
 package com.github.springsneaker.repository.inventory;
 
-public interface KoreaInventoryRepository {
+import com.github.springsneaker.repository.inventory.KoreaInventory;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface KoreaInventoryRepository extends JpaRepository<KoreaInventory, Integer> {
 }

@@ -21,7 +21,7 @@ import java.util.Map;
         transactionManagerRef = "tmJpa"
 )
 public class JpaConfig {
-
+    // db 연결 설정
     @Bean
     public DataSource dataSource(){
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
