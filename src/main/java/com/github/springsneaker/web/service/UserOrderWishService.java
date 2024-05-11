@@ -32,6 +32,9 @@ public class UserOrderWishService {
     private final GeneralUserRepository generalUserRepository;
     private final WishRepository wishRepository;
 
+
+    // 사용자가 새로운 주문을 생성하는 기능. 주문 요청에는 모델 ID, 배송 주소, 사용자 ID, 주문 수량, 스니커즈 사이즈가 포함. 주문이 성공적으로 저장되면 주문 총액을 반환
+    // 트랜잭션 관리를 위해 @Transactional(transactionManager = "tmJpa") 어노테이션을 사용. 이는 해당 메서드 실행을 하나의 트랜잭션으로 관리하며, 실행 중 예외가 발생하면 롤백을 수행하여 데이터 일관성을 유지
     @Transactional(transactionManager = "tmJpa")
     public Double makeOrder(OrderRequest orderRequest) {
         Integer modelId = orderRequest.getModelId();
@@ -62,6 +65,9 @@ public class UserOrderWishService {
         Order orderSaved = orderRepository.save(orderNew);
         return orderSaved.getTotalPrice();
     }
+
+    // 사용자가 특정 스니커즈 모델을 위시리스트에 추가하는 기능. 위시리스트 요청에는 모델 ID, 사용자 ID, 스니커즈 사이즈가 포함. 위시리스트 항목이 성공적으로 저장되면 true를 반환
+    // 트랜잭션 관리를 위해 @Transactional(transactionManager = "tmJpa") 어노테이션을 사용. 이는 해당 메서드 실행을 하나의 트랜잭션으로 관리하며, 실행 중 예외가 발생하면 롤백을 수행하여 데이터 일관성을 유지
     @Transactional(transactionManager = "tmJpa")
     public Boolean makeWish(WishRequest wishRequest) {
         Integer modelId = wishRequest.getModelId();

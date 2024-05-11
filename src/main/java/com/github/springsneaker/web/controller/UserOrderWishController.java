@@ -13,10 +13,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
-@RequiredArgsConstructor
+@RestController // RESTful 웹 서비스로 구현되어 있으며, 각각의 엔드포인트는 클라이언트 요청에 따라 JSON 형태의 데이터를 주고받는 API를 제공
+@RequiredArgsConstructor //  Lombok 라이브러리를 통해 필요한 의존성 주입을 생성자 주입 방식으로 간소화
 @RequestMapping("/v1/api/user-order-wish")
 @Slf4j
+
+
+// 사용자에 의한 주문 생성 기능을 제공. @PostMapping("/order")를 통해 주문 요청 정보(OrderRequest)를 받아 주문을 생성하고, 총 구매 금액을 포함한 문자열 메시지로 예약 완료를 알림.
+// 사용자가 물품을 찜(위시리스트에 추가)하는 기능을 제공. @PostMapping("/wish")를 통해 찜 요청 정보(WishRequest)를 받아 처리하고, 찜 성공 여부에 따라 다른 메시지를 반환.
 public class UserOrderWishController {
 
     private final UserOrderWishService userOrdersWishService;
